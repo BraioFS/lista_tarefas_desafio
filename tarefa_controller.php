@@ -60,6 +60,7 @@ if ($acao == 'inserir') {
     $tarefaService->marcarRealizada();
 
     header('Location: todas_tarefas.php');
+    //Ação para filtrar a lista pelo id do status enviado pelo front
 } else if ($acao == 'filtrarStatus') {
     $tarefa = new Tarefa();
     $conexao = new Conexao();
@@ -67,6 +68,7 @@ if ($acao == 'inserir') {
 
     $tarefa->__set('id_status', $_GET['id']);
     $tarefas = $tarefaService->recuperarTarefasPendentes();
+    //Ação de ordenação pelo parametro enviado pelo front
 } else if ($acao == 'ordenarPor') {
     if (isset ($_GET['atributo'])) {
         $tarefa = new Tarefa();
@@ -75,18 +77,20 @@ if ($acao == 'inserir') {
 
         $tarefas = $tarefaService->ordenarPor($_GET['atributo']);
     }
+
+    //Inserido a ação do controller que chama a verificação de tarefas pela data
 } else if ($acao == 'verificarTarefas') {
     $tarefa = new Tarefa();
     $conexao = new Conexao();
     $tarefaService = new TarefaService($conexao, $tarefa);
-
-    // Não precisamos mais do loop, pois vamos apenas verificar se há tarefas vencidas
     $vencido = $tarefaService->verificarTarefa();
 
+    //Caso possua alguma tarefa vencida ou para vencer irá lançar um alert
     if ($vencido) {
         echo "<script>alert('Você possui tarefas vencendo hoje ou que vencerão em breve. Verifique suas tarefas para não perder nenhum prazo!');</script>";
     }
 
+    //Ação para arquivar uma tarefa
 } else if ($acao == 'arquivar') {
     $tarefa = new Tarefa();
     $tarefa->__set('id', $_GET['id']);

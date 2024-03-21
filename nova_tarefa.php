@@ -52,11 +52,13 @@
 										placeholder="Exemplo: Lavar o carro">
 								</div>
 
+								<!-- Adicionado um input date para a inserção do dia de vencimento da tarefa #-->
 								<div class="form-group">
 									<label>Data de Vencimento:</label>
 									<input type="date" class="form-control" name="data_vencimento">
 								</div>
 
+								<!-- Adicionado um select com categorias cadastradas anteriormente para a inserção da categoria da tarefa #-->
 								<div class="form-group">
 									<label>Categoria da tarefa:</label>
 									<select class="form-control" name="id_categoria">

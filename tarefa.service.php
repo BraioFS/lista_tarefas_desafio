@@ -24,7 +24,6 @@ class TarefaService
 
     public function recuperar()
     {
-        //R - read
         $query = '
             select
                 t.id, s.status, t.tarefa
@@ -40,7 +39,6 @@ class TarefaService
 
     public function atualizar()
     {
-        // U - update
         $query = "
     UPDATE 
         tb_tarefas 
@@ -59,7 +57,6 @@ class TarefaService
 
     public function remover()
     {
-        //D - delete
         $query = '
         delete from 
             tb_tarefas
@@ -105,6 +102,7 @@ class TarefaService
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    //Adicionado a pesquisa no banco para a ordenação pelo parametro enviado 
     public function ordenarPor($orderBy)
     {
         $query = "SELECT t.id, s.status, t.tarefa FROM tb_tarefas as t LEFT JOIN tb_status as s ON (t.id_status = s.id) ORDER BY $orderBy";
@@ -113,6 +111,7 @@ class TarefaService
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    //Adicionado a pesquisa no banco para a verificação de tarefas baseada na data 
     public function verificarTarefa()
     {
         $hoje = date('Y-m-d'); // Obtém a data atual no formato MySQL
@@ -124,6 +123,7 @@ class TarefaService
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    //Adicionado a atualização do id_status para arquivada no banco
     public function arquivarTarefa()
     {
         $query = "

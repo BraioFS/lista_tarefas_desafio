@@ -83,14 +83,17 @@ require 'tarefa_controller.php';
 			location.href = 'index.php?pag=index&acao=marcarRealizada&id=' + id;
 		}
 
+		//Criada a função de ornar status por atributo, que será pelo que irá ordenar
 		function ordenarPor(atributo) {
 			window.location.href = 'index.php?pag=index&acao=ordenarPor&atributo=' + atributo;
 		}
 
+		//função assincrona que irá buscar no banco se possui tarefa aberta nos dias atuais ou anteriores
 		function verificarTarefas() {
 			window.location.href = 'index.php?pag=index&acao=verificarTarefas';
 		}
 
+		//timer responsável por ficar chamando o verificarTarefas a cada segundo
 		setInterval(function () {
 			verificarTarefas();
 		}, 60000);
@@ -126,6 +129,7 @@ require 'tarefa_controller.php';
 							<hr />
 
 							<div class="col">
+								<!-- Adicionado um select para ordenação o valor se refere ao banco  -->
 								<form method="post" action="tarefa_controller.php?acao=ordenarPor" id="formOrdenar">
 									<label>Ordenar por:</label>
 									<div>
